@@ -62,4 +62,33 @@ bool isSafe(int procs[], int av[], int m[][reso], int al[][reso]) { // func for 
     std::cout << std::endl;
     return true;
 }
-
+int main() {
+    ifstream input("input-file-1.txt");
+    if (!inputFile) {
+        cerr << "error opening input file" << endl;
+        return 1;
+    }
+    int processes[proc];
+    for (int i = 0; i < proc; i++) {
+        processes[i] = i; 
+    }
+    int av[reso];       // # available resources
+    int m[proc][reso];      // max demand
+    int al[proc][reso];    // # resources allocated to each process
+    for (int i = 0; i < reso; i++) { // read available resources
+        input >> av[i];
+    }
+    for (int i = 0; i < proc; i++) { // read alloc 
+        for (int j = 0; j < reso; j++) {
+            input>> al[i][j];
+        }
+    }
+    for (int i = 0; i < proc; i++) { // read max demand
+        for (int j = 0; j < reso; j++) {
+            input >> m[i][j];
+        }
+    }
+    input.close();
+    isSafe(processes, av, m, al); // safe state check
+    return 0;
+}
