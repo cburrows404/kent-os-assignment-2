@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-
 const int proc = 5; // # processes
 const int reso = 3; // # resources
 void need(int n[proc][reso], int m[proc][reso], int a[proc][reso]) {  // func for need calculation
@@ -68,9 +67,9 @@ int main() {
         cerr << "error opening input file" << endl;
         return 1;
     }
-    int processes[proc];
+    int numProcesses[proc];
     for (int i = 0; i < proc; i++) {
-        processes[i] = i; 
+        numProcesses[i] = i; 
     }
     int av[reso];       // # available resources
     int m[proc][reso];      // max demand
@@ -89,6 +88,6 @@ int main() {
         }
     }
     input.close();
-    isSafe(processes, av, m, al); // safe state check
+    isSafe(numProcesses, av, m, al); // safe state check
     return 0;
 }
