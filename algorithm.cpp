@@ -20,7 +20,7 @@ bool isSafe(int procs[], int av[], int m[][reso], int al[][reso]) { // func for 
     int work[reso];              // num of working resources
     // sync working and available resources
     for (int i = 0; i < reso; i++) {
-        work[i] = avail[i];
+        work[i] = av[i];
     }
     int count = 0; // # procs in safe seq
     bool found = false;
@@ -48,7 +48,7 @@ bool isSafe(int procs[], int av[], int m[][reso], int al[][reso]) { // func for 
         }
         // if is no procs could be alloc resources, notify of unsafe state
         if (!found) {
-            std::cout << "System is not in a safe state." << endl;
+            std::cout << "System is not in a safe state." << std::endl;
             return false;
         }
     }
@@ -56,15 +56,15 @@ bool isSafe(int procs[], int av[], int m[][reso], int al[][reso]) { // func for 
     std::cout << "system in safe state.\n"<<std::endl;
     std::cout<<"safe sequence is: ";
     for (int i = 0; i < proc; i++) {
-        cout << safeSeq[i] << (i < proc - 1 ? " -> " : "");
+        std::cout << safeSeq[i] << (i < proc - 1 ? " -> " : "");
     }
     std::cout << std::endl;
     return true;
 }
 int main() {
-    ifstream input("input-file-1.txt");
-    if (!inputFile) {
-        cerr << "error opening input file" << endl;
+    std::ifstream input("input-file-1.txt");
+    if (!input) {
+        std::cerr << "error opening input file" << std::endl;
         return 1;
     }
     int numProcesses[proc];
